@@ -1,9 +1,8 @@
-<h1> NetworkSecurityAudit-CySA-</h1>
+# Enterprise Network Security Audit, Active Directory Hardening & IDS Deployment
 
-<h2>Description</h2>
-This project provides an end-to-end network security audit and threat monitoring solution built across an enterprise Active Directory environment. The lab combines proactive vulnerability assessments using Tenable Nessus with defensive Group Policy Object (GPO) hardening to eliminate system misconfigurations. It also features offline password hash auditing using Hashcat to identify weak domain credentials and test access controls before an actual adversary can exploit them.
+This project provides an end-to-end network security audit and threat monitoring solution built across an enterprise Active Directory environment. Divided into 5 distinct assessment sections, the lab combines proactive vulnerability assessments using Tenable Nessus with defensive Group Policy Object (GPO) hardening to eliminate system misconfigurations. It also features offline password hash auditing using Hashcat to identify weak domain credentials and test access controls before an actual adversary can exploit them.
 
-To defend against active network threats, the environment incorporates a custom-configured Snort Intrusion Detection System (IDS) paired with Wireshark packet analysis. The setup actively monitors network traffic, detects unauthorized ICMP reconnaissance, and flags stealthy Nmap TCP FIN scans in real time. Designed around CompTIA CySA+ objectives, the project bridges host-level system administration with network-level threat hunting and incident triage.
+To defend against active network threats, the environment incorporates a custom-configured Snort Intrusion Detection System (IDS) paired with Wireshark packet analysis. Across all 5 phases, the setup actively monitors network traffic, detects unauthorized ICMP reconnaissance, and flags stealthy Nmap TCP FIN scans in real time. Designed around CompTIA CySA+ objectives, the project bridges host-level system administration with network-level threat hunting and incident triage.stration with network-level threat hunting and incident triage.
 <br />
 
 
