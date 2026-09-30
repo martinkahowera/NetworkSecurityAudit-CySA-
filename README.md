@@ -36,8 +36,8 @@ To prevent disruption to production infrastructure, all security enhancements, v
 <h2>Program walk-through:</h2>
 
 <p align="center">
-Launch the utility: <br/>
-<img src="https://imgur.com/a/pJjELSn" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+
+<img src="https://imgur.com/a/HCq10lC.png" width="80%" alt="Disk Sanitization Steps" />
 <br />### Task 1.1: SRV01 Network & Hostname Setup
 
 **What I Did**
