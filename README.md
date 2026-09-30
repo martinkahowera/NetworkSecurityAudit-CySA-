@@ -86,6 +86,8 @@ I updated the Windows Defender Firewall rules on SRV01 to permit File and Printe
 **Why I Did It**
 File and Printer Sharing uses SMB (Server Message Block) protocols (ports 139 and 445) and NetBIOS/RPC services required for remote management, file distribution, and network service enumeration. Opening this service across all profiles ensures that administrative and audit traffic from security workstations (such as Kali02) can reach required host interfaces during testing and compliance scans.
 
+![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-01%20014509.png?raw=true)
+
 
 
 <!--
