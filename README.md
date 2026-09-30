@@ -53,7 +53,26 @@ To prevent disruption to production infrastructure, all security enhancements, v
 **Why I Did It**
 A server acting as a core infrastructure node—especially a Domain Controller—cannot use dynamic (DHCP) IP addressing because its IP must remain fixed so other machines on the network can reliably find it. Setting the local IP address as the preferred DNS server is a prerequisite before promoting the machine to a Domain Controller, as Active Directory relies heavily on DNS for domain resolution, authentication, and service location across the network.
 <br />
-Select the disk:  <br/>
+![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20040350.png?raw=true)
+### Task 1.2: Active Directory Domain Controller Promotion (`metdata.com`)
+
+**What I Did**
+I installed Active Directory Domain Services (AD DS) on SRV01 and promoted the server to the Primary Domain Controller for a new forest named `metdata.com`. As demonstrated in the `systeminfo` output above, the system's OS Configuration reflects **Primary Domain Controller**, assigned to the domain **metdata.com**, with **\\SRV01** acting as the logon server.
+
+**How I Did It**
+1. Opened Server Manager, navigated to **Add Roles and Features**, and selected the **Active Directory Domain Services (AD DS)** role along with its management tools.
+2. Completed the wizard installation and launched the **Active Directory Domain Services Configuration Wizard** via the Server Manager notification banner.
+3. Selected **Add a new forest**, configured the Root domain name as `metdata.com`, set the DSRM password, and kept standard forest/domain functional levels.
+4. Executed the prerequisite checks and initiated the installation, allowing the system to automatically restart to complete the promotion.
+5. Ran `systeminfo` in Command Prompt post-reboot to verify domain role assignment, domain naming, and logon server details.
+
+**Why I Did It**
+Establishing an Active Directory Domain Controller provides centralized identity, access management, and policy enforcement (GPOs) across the entire `metdata.com` enterprise. Promoting `SRV01` as the root domain controller forms the foundational directory infrastructure required to manage domain accounts, enforce security controls, and audit access across endpoints and services in subsequent phases of this lab.
+
+
+
+
+
 <img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
