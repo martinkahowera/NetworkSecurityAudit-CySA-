@@ -71,31 +71,22 @@ I installed Active Directory Domain Services (AD DS) on SRV01 and promoted the s
 Establishing an Active Directory Domain Controller provides centralized identity, access management, and policy enforcement (GPOs) across the entire `metdata.com` enterprise. Promoting `SRV01` as the root domain controller forms the foundational directory infrastructure required to manage domain accounts, enforce security controls, and audit access across endpoints and services in subsequent phases of this lab.
 
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20041825.png?raw=true)
+### Task 1.3: Windows Defender Firewall — File and Printer Sharing Rule
+
+**What I Did**
+I updated the Windows Defender Firewall rules on SRV01 to permit File and Printer Sharing traffic across all network location profiles (Domain, Private, and Public). As shown in the screenshot, the primary service entry and all three profile checkboxes are explicitly enabled.
+
+**How I Did It**
+1. Opened Control Panel on SRV01 and navigated to **System and Security** > **Windows Defender Firewall**.
+2. Clicked **Allow an app or feature through Windows Defender Firewall** on the left navigation pane.
+3. Located **File and Printer Sharing** in the list of allowed applications.
+4. Enabled the main service check box alongside the **Domain**, **Private**, and **Public** profile check boxes.
+5. Clicked **OK** to commit the firewall rule changes to the system.
+
+**Why I Did It**
+File and Printer Sharing uses SMB (Server Message Block) protocols (ports 139 and 445) and NetBIOS/RPC services required for remote management, file distribution, and network service enumeration. Opening this service across all profiles ensures that administrative and audit traffic from security workstations (such as Kali02) can reach required host interfaces during testing and compliance scans.
 
 
-
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Wait for process to complete (may take some time):  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
 
 <!--
  ```diff
