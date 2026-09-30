@@ -38,7 +38,8 @@ To prevent disruption to production infrastructure, all security enhancements, v
 <p align="center">
 
 ![image alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20025321.png?raw=true)
-<br />### Task 1.1: SRV01 Network & Hostname Setup
+<br />
+### Task 1.1: SRV01 Network & Hostname Setup
 
 **What I Did**
 --I configured the static IP parameters and hostname on the newly installed Windows Server 2022 instance. As shown in the terminal output above, I set the host name to SRV01, assigned a static IPv4 address of 172.31.20.10 with a subnet mask of 255.255.255.0, and configured the preferred DNS servers to point to 172.31.20.10 (and loopback 127.0.0.1).
