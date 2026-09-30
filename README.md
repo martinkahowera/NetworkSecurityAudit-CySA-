@@ -37,7 +37,7 @@ To prevent disruption to production infrastructure, all security enhancements, v
 
 <p align="center">
 
-![image alt]([image_url](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/1e74d9282755bcf18e2856d94926dcdefb8f7ea1/Screenshot%202026-09-30%20025321.png))
+![image alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20025321.png?raw=true)
 <br />### Task 1.1: SRV01 Network & Hostname Setup
 
 **What I Did**
