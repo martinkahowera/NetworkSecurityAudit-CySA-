@@ -53,6 +53,7 @@ To prevent disruption to production infrastructure, all security enhancements, v
 **Why I Did It**
 A server acting as a core infrastructure node—especially a Domain Controller—cannot use dynamic (DHCP) IP addressing because its IP must remain fixed so other machines on the network can reliably find it. Setting the local IP address as the preferred DNS server is a prerequisite before promoting the machine to a Domain Controller, as Active Directory relies heavily on DNS for domain resolution, authentication, and service location across the network.
 <br />
+
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20040350.png?raw=true)
 ### Task 1.2: Active Directory Domain Controller Promotion (`metdata.com`)
 
@@ -69,7 +70,7 @@ I installed Active Directory Domain Services (AD DS) on SRV01 and promoted the s
 **Why I Did It**
 Establishing an Active Directory Domain Controller provides centralized identity, access management, and policy enforcement (GPOs) across the entire `metdata.com` enterprise. Promoting `SRV01` as the root domain controller forms the foundational directory infrastructure required to manage domain accounts, enforce security controls, and audit access across endpoints and services in subsequent phases of this lab.
 
-
+![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20041825.png?raw=true)
 
 
 
