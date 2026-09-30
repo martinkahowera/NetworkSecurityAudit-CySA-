@@ -4,7 +4,11 @@ This project provides an end-to-end network security audit and threat monitoring
 
 To defend against active network threats, the environment incorporates a custom-configured Snort Intrusion Detection System (IDS) paired with Wireshark packet analysis. Across all 5 phases, the setup actively monitors network traffic, detects unauthorized ICMP reconnaissance, and flags stealthy Nmap TCP FIN scans in real time. Designed around CompTIA CySA+ objectives, the project bridges host-level system administration with network-level threat hunting and incident triage.stration with network-level threat hunting and incident triage.
 <br />
+## 📋 Engagement Context & Scenario
 
+As an IT Security Auditor assigned to **Metdata**, the primary objective is to evaluate, harden, and verify the organization's security architecture. The Senior Security Compliance Officer directed an audit of network security postures, script-based hardening controls, service optimization at boot, and vulnerability remediation strategies.
+
+To prevent disruption to production infrastructure, all security enhancements, vulnerability scans, and intrusion detection deployments are engineered, tested, and validated within a dedicated virtualized staging environment mirroring the enterprise production network.
 
 <h2>Languages and Utilities Used</h2>
 
@@ -33,8 +37,20 @@ To defend against active network threats, the environment incorporates a custom-
 
 <p align="center">
 Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
+<img src="https://imgur.com/a/pJjELSn" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />### Task 1.1: SRV01 Network & Hostname Setup
+
+**What I Did**
+--I configured the static IP parameters and hostname on the newly installed Windows Server 2022 instance. As shown in the terminal output above, I set the host name to SRV01, assigned a static IPv4 address of 172.31.20.10 with a subnet mask of 255.255.255.0, and configured the preferred DNS servers to point to 172.31.20.10 (and loopback 127.0.0.1).
+
+**How I Did It**
+1. Renamed the computer to SRV01 through System Properties and rebooted the server to apply the change.
+2. Opened Network Connections, accessed the properties for Ethernet0, and configured Internet Protocol Version 4 (TCP/IPv4).
+3. Switched from DHCP to manual static configuration, entering the required IP address, subnet mask, and DNS server details.
+4. Opened Command Prompt as Administrator and ran `ipconfig /all` followed by `hostname` to verify all parameters were applied properly.
+
+**Why I Did It**
+A server acting as a core infrastructure node—especially a Domain Controller—cannot use dynamic (DHCP) IP addressing because its IP must remain fixed so other machines on the network can reliably find it. Setting the local IP address as the preferred DNS server is a prerequisite before promoting the machine to a Domain Controller, as Active Directory relies heavily on DNS for domain resolution, authentication, and service location across the network.
 <br />
 Select the disk:  <br/>
 <img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
