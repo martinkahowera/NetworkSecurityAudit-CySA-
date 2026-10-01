@@ -117,3 +117,4 @@ All the core setup for the lab is finished and verified:
 ### Task 2: Reconnaissance & Wireshark Packet Analysis
 
 In this section, I'll be looking at how attackers gather information on a network during the reconnaissance phase. I'll start Wireshark on `SRV01` to capture live traffic, then head over to `Kali02` to run Nmap ping and full port scans against the network and server. After the scans, I'll analyze the captured packets in Wireshark and apply specific filters to isolate TCP Push and FIN flags coming from the Kali machine.
+![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20014321.png?raw=true)
