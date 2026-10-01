@@ -88,7 +88,18 @@ File and Printer Sharing uses SMB (Server Message Block) protocols (ports 139 an
 
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-01%20014509.png?raw=true)
 
+### Task 1.4: Kali02 Network Configuration & Connectivity Verification
+I set up the static IP address on my Kali Linux machine (Kali02) so it's on the same subnet (172.31.20.0/24) as my server. Then I tested the connection to make sure Kali02 can talk to SRV01 (172.31.20.10) properly.
 
+How I Did It
+
+Opened the terminal on Kali02.
+
+Ran sudo ip addr add 172.31.20.30/24 dev eth0 to set my static IP and brought the link up.
+
+Ran ping -c 4 172.31.20.10 to send 4 test packets to SRV01.
+
+Ran ip a to double check that 172.31.20.30 was actually bound to my eth0 interface.
 
 <!--
  ```diff
