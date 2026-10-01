@@ -32,8 +32,12 @@ To prevent disruption to production infrastructure, all security enhancements, v
 - Windows Server 2022 Standard (Domain Controller / SRV01)
 - Kali Linux (Attacker / Security Audit Workstation)
 - VMware Workstation / Oracle VirtualBox (Virtualization Platform)
+- 
+## Task 1: System Configurations
 
-<h2>Program walk-through:</h2>
+Before diving into packet analysis and security testing, I needed to set up the lab environment. In this section, I deployed two virtual machines—`SRV01` (Windows Server 2022) and `Kali02` (Kali Linux)—configured their static IP addresses on the same subnet, promoted `SRV01` to a Domain Controller for `metdata.com`, and verified network connectivity between both hosts.
+
+<h2>Task walk-through:</h2>
 
 <p align="center">
 
@@ -102,8 +106,12 @@ I set up the static IP address on my Kali Linux machine (Kali02) so it's on the 
 **Why I Did It**
 I need Kali02 on a static IP address in the network so it stays consistent when I start running vulnerability scans and network tests. Ping testing confirms that the virtual network is connected and that SRV01 isn't blocking basic connection attempts from Kali02.
 
-## End of Section A — Task 1: Environment Setup Complete
+## End of Task 1: Environment Setup Complete
 
 All the core setup for the lab is finished and verified:
 - **SRV01** has a static IP (`172.31.20.10`), is promoted as the Domain Controller for `metdata.com`, and has Windows Firewall configured to allow File and Printer Sharing.
 - **Kali02** is set up with a static IP (`172.31.20.30`) and can successfully ping `SRV01`.
+
+### Task 2: Reconnaissance & Wireshark Packet Analysis
+
+In this section, I'll be looking at how attackers gather information on a network during the reconnaissance phase. I'll start Wireshark on `SRV01` to capture live traffic, then head over to `Kali02` to run Nmap ping and full port scans against the network and server. After the scans, I'll analyze the captured packets in Wireshark and apply specific filters to isolate TCP Push and FIN flags coming from the Kali machine.
