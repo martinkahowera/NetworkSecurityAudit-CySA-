@@ -112,6 +112,8 @@ All the core setup for the lab is finished and verified:
 - **SRV01** has a static IP (`172.31.20.10`), is promoted as the Domain Controller for `metdata.com`, and has Windows Firewall configured to allow File and Printer Sharing.
 - **Kali02** is set up with a static IP (`172.31.20.30`) and can successfully ping `SRV01`.
 
+---
+
 ### Task 2: Reconnaissance & Wireshark Packet Analysis
 
 In this section, I'll be looking at how attackers gather information on a network during the reconnaissance phase. I'll start Wireshark on `SRV01` to capture live traffic, then head over to `Kali02` to run Nmap ping and full port scans against the network and server. After the scans, I'll analyze the captured packets in Wireshark and apply specific filters to isolate TCP Push and FIN flags coming from the Kali machine.
