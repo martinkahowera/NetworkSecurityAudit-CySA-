@@ -102,12 +102,8 @@ I set up the static IP address on my Kali Linux machine (Kali02) so it's on the 
 **Why I Did It**
 I need Kali02 on a static IP address in the network so it stays consistent when I start running vulnerability scans and network tests. Ping testing confirms that the virtual network is connected and that SRV01 isn't blocking basic connection attempts from Kali02.
 
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
+## End of Section A — Task 1: Environment Setup Complete
+
+All the core setup for the lab is finished and verified:
+- **SRV01** has a static IP (`172.31.20.10`), is promoted as the Domain Controller for `metdata.com`, and has Windows Firewall configured to allow File and Printer Sharing.
+- **Kali02** is set up with a static IP (`172.31.20.30`) and can successfully ping `SRV01`.
