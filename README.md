@@ -118,3 +118,17 @@ All the core setup for the lab is finished and verified:
 
 In this section, I'll be looking at how attackers gather information on a network during the reconnaissance phase. I'll start Wireshark on `SRV01` to capture live traffic, then head over to `Kali02` to run Nmap ping and full port scans against the network and server. After the scans, I'll analyze the captured packets in Wireshark and apply specific filters to isolate TCP Push and FIN flags coming from the Kali machine.
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20014321.png?raw=true)
+
+### Task 2.1: Wireshark Traffic Capture Initiation on SRV01
+
+**What I Did:**
+I installed Wireshark on `SRV01` and started capturing live network traffic on the `Ethernet0` interface to record all activity coming in during the network scans.
+
+**How I Did It:**
+1. Downloaded and installed Wireshark on `SRV01`.
+2. Opened Wireshark from the Start menu.
+3. Selected `Ethernet0` from the capture list and clicked the blue shark fin button to start capturing traffic.
+
+**Why I Did It:**
+I need Wireshark running on `SRV01` before kicking off any scans so I can capture all incoming probes from `Kali02`. Capturing live traffic lets me inspect how reconnaissance looks from the server's perspective and gives me raw packet data to analyze later.
+
