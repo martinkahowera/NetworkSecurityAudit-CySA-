@@ -41,65 +41,66 @@ To prevent disruption to production infrastructure, all security enhancements, v
 <br />
 ### Task 1.1: SRV01 Network & Hostname Setup
 
-**What I Did**
---I configured the static IP parameters and hostname on the newly installed Windows Server 2022 instance. As shown in the terminal output above, I set the host name to SRV01, assigned a static IPv4 address of 172.31.20.10 with a subnet mask of 255.255.255.0, and configured the preferred DNS servers to point to 172.31.20.10 (and loopback 127.0.0.1).
+**What I Did:**
+I configured the static IP parameters and hostname on the newly installed Windows Server 2022 instance. As shown in the terminal output above, I set the host name to SRV01, assigned a static IPv4 address of 172.31.20.10 with a subnet mask of 255.255.255.0, and configured the preferred DNS servers to point to 172.31.20.10 (and loopback 127.0.0.1).
 
-**How I Did It**
+**How I Did It:**
 1. Renamed the computer to SRV01 through System Properties and rebooted the server to apply the change.
 2. Opened Network Connections, accessed the properties for Ethernet0, and configured Internet Protocol Version 4 (TCP/IPv4).
 3. Switched from DHCP to manual static configuration, entering the required IP address, subnet mask, and DNS server details.
 4. Opened Command Prompt as Administrator and ran `ipconfig /all` followed by `hostname` to verify all parameters were applied properly.
 
-**Why I Did It**
+**Why I Did It:**
 A server acting as a core infrastructure node—especially a Domain Controller—cannot use dynamic (DHCP) IP addressing because its IP must remain fixed so other machines on the network can reliably find it. Setting the local IP address as the preferred DNS server is a prerequisite before promoting the machine to a Domain Controller, as Active Directory relies heavily on DNS for domain resolution, authentication, and service location across the network.
 <br />
 
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20040350.png?raw=true)
 ### Task 1.2: Active Directory Domain Controller Promotion (`metdata.com`)
 
-**What I Did**
+**What I Did:**
 I installed Active Directory Domain Services (AD DS) on SRV01 and promoted the server to the Primary Domain Controller for a new forest named `metdata.com`. As demonstrated in the `systeminfo` output above, the system's OS Configuration reflects **Primary Domain Controller**, assigned to the domain **metdata.com**, with **\\SRV01** acting as the logon server.
 
-**How I Did It**
+**How I Did It:**
 1. Opened Server Manager, navigated to **Add Roles and Features**, and selected the **Active Directory Domain Services (AD DS)** role along with its management tools.
 2. Completed the wizard installation and launched the **Active Directory Domain Services Configuration Wizard** via the Server Manager notification banner.
 3. Selected **Add a new forest**, configured the Root domain name as `metdata.com`, set the DSRM password, and kept standard forest/domain functional levels.
 4. Executed the prerequisite checks and initiated the installation, allowing the system to automatically restart to complete the promotion.
 5. Ran `systeminfo` in Command Prompt post-reboot to verify domain role assignment, domain naming, and logon server details.
 
-**Why I Did It**
+**Why I Did It:**
 Establishing an Active Directory Domain Controller provides centralized identity, access management, and policy enforcement (GPOs) across the entire `metdata.com` enterprise. Promoting `SRV01` as the root domain controller forms the foundational directory infrastructure required to manage domain accounts, enforce security controls, and audit access across endpoints and services in subsequent phases of this lab.
 
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-09-30%20041825.png?raw=true)
 ### Task 1.3: Windows Defender Firewall — File and Printer Sharing Rule
 
-**What I Did**
+**What I Did:**
 I updated the Windows Defender Firewall rules on SRV01 to permit File and Printer Sharing traffic across all network location profiles (Domain, Private, and Public). As shown in the screenshot, the primary service entry and all three profile checkboxes are explicitly enabled.
 
-**How I Did It**
+**How I Did It:**
 1. Opened Control Panel on SRV01 and navigated to **System and Security** > **Windows Defender Firewall**.
 2. Clicked **Allow an app or feature through Windows Defender Firewall** on the left navigation pane.
 3. Located **File and Printer Sharing** in the list of allowed applications.
 4. Enabled the main service check box alongside the **Domain**, **Private**, and **Public** profile check boxes.
 5. Clicked **OK** to commit the firewall rule changes to the system.
 
-**Why I Did It**
+**Why I Did It:**
 File and Printer Sharing uses SMB (Server Message Block) protocols (ports 139 and 445) and NetBIOS/RPC services required for remote management, file distribution, and network service enumeration. Opening this service across all profiles ensures that administrative and audit traffic from security workstations (such as Kali02) can reach required host interfaces during testing and compliance scans.
 
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-01%20014509.png?raw=true)
 
 ### Task 1.4: Kali02 Network Configuration & Connectivity Verification
+**What I Did**
 I set up the static IP address on my Kali Linux machine (Kali02) so it's on the same subnet (172.31.20.0/24) as my server. Then I tested the connection to make sure Kali02 can talk to SRV01 (172.31.20.10) properly.
 
-How I Did It
+**How I Did It**
 
-Opened the terminal on Kali02.
+1. Opened the terminal on Kali02.
+2. Ran sudo ip addr add 172.31.20.30/24 dev eth0 to set my static IP and brought the link up.
+3. Ran ping -c 4 172.31.20.10 to send 4 test packets to SRV01.
+4. Ran ip a to double check that 172.31.20.30 was actually bound to my eth0 interface.
 
-Ran sudo ip addr add 172.31.20.30/24 dev eth0 to set my static IP and brought the link up.
-
-Ran ping -c 4 172.31.20.10 to send 4 test packets to SRV01.
-
-Ran ip a to double check that 172.31.20.30 was actually bound to my eth0 interface.
+**Why I Did It**
+I need Kali02 on a static IP address in the network so it stays consistent when I start running vulnerability scans and network tests. Ping testing confirms that the virtual network is connected and that SRV01 isn't blocking basic connection attempts from Kali02.
 
 <!--
  ```diff
