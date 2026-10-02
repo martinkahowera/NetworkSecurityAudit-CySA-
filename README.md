@@ -134,7 +134,7 @@ I need Wireshark running on `SRV01` before kicking off any scans so I can captur
 
 ### Task 2.2a: Subnet Ping Sweep Scan
 
-![Nmap Subnet Ping Scan]((https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20015733.png?raw=true)
+![Nmap Subnet Ping Scan](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20015733.png?raw=true)
 
 **What I Did:**
 I ran a ping sweep across the entire `172.31.20.0/24` subnet from `Kali02` to discover all active host devices on the local network.
