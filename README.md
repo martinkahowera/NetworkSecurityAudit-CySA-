@@ -132,3 +132,16 @@ I installed Wireshark on `SRV01` and started capturing live network traffic on t
 **Why I Did It:**
 I need Wireshark running on `SRV01` before kicking off any scans so I can capture all incoming probes from `Kali02`. Capturing live traffic lets me inspect how reconnaissance looks from the server's perspective and gives me raw packet data to analyze later.
 
+### Task 2.2a: Subnet Ping Sweep Scan
+
+![Nmap Subnet Ping Scan]((https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20015733.png?raw=true)
+
+**What I Did:**
+I ran a ping sweep across the entire `172.31.20.0/24` subnet from `Kali02` to discover all active host devices on the local network.
+
+**How I Did It:**
+1. Added a direct route to ensure traffic routed through the correct local interface:
+   ```bash
+   sudo ip route add 172.31.20.0/24 dev eth0
+
+   
