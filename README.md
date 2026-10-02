@@ -187,3 +187,21 @@ I stopped the live Wireshark capture on `SRV01` after running the Nmap scans, re
 **Why I Did It:**
 Analyzing individual packets in Wireshark gives a clear look at how background operating system traffic, domain broadcasts, and local address queries (ARP/LLMNR) operate alongside network scanning activity. Understanding normal baseline traffic makes it much easier to spot anomalous or malicious probes on the wire.
 
+![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20051913.png?raw=true)
+### Task 2.4b: Wireshark Filtering for TCP FIN Flag
+
+![Wireshark TCP FIN Flag Filter](screenshots/wireshark-tcp-fin.png)
+
+**What I Did:**
+I applied a display filter in Wireshark on `SRV01` to check if any packets originating from `Kali02` (`172.31.20.30`) had the TCP Finish (`FIN`) flag set.
+
+**How I Did It:**
+1. Entered the display filter expression into the Wireshark filter bar:
+   ```text
+   ip.src == 172.31.20.30 && tcp.flags.fin == 1
+
+2. Executed the filter and observed that no packets were returned in the capture display.
+
+Why I Did It:
+The TCP FIN flag is typically used to gracefully terminate an active TCP session or in stealthy reconnaissance scans (such as an Nmap FIN scan -sF). Because the reconnaissance performed on Kali02 relied on SYN stealth scans and ICMP discovery rather than FIN scans or full TCP tear-downs, no packets with the FIN flag set were sent by Kali during the capture.
+
