@@ -166,4 +166,24 @@ I ran a comprehensive full-port scan against `SRV01` (`172.31.20.10`) from `Kali
 
 Why I Did It:
 Scanning the entire port range (-p-) ensures no non-standard services or administrative entry points are left undetected. The result showing all ports as filtered demonstrates that Windows Defender Firewall on SRV01 is actively dropping unsolicited probe packets, preventing unauthorized reconnaissance from mapping open listening ports.
-   
+
+![image_alt](https://github.com/user-attachments/assets/8116a062-afb5-4ab3-8168-404ad14074ec)
+
+### Task 2.3: Wireshark Packet Analysis & Captured Traffic Breakdown
+
+**What I Did:**
+I stopped the live Wireshark capture on `SRV01` after running the Nmap scans, reviewed the captured traffic log, and picked out five specific packets to analyze how different network protocols behave during operation and discovery.
+
+**How I Did It:**
+1. Stopped the packet capture in Wireshark on `SRV01`.
+2. Examined the packet list table to locate packets generated during system operation, network discovery, and address resolution.
+3. Selected five representative packets from the capture:
+   - **Packet #1 (BROWSER Protocol):** `172.31.20.10` broadcasting a host announcement to `172.31.20.255` identifying `SRV01` as a Workstation, Server, and Domain Controller.
+   - **Packet #2 (DHCP Request):** `192.168.204.1` sending a DHCP Request to `192.168.204.254` to request IP configuration settings.
+   - **Packet #3 (LLMNR Query):** Multicast query sent to `224.0.0.252` looking up host `MKAHOWERA` using Link-Local Multicast Name Resolution.
+   - **Packet #18 (ARP Request):** VMware interface asking "Who has `192.168.204.254`?" to resolve MAC address mapping on the network link.
+   - **Packet #22 (ARP Probe):** Broadcast ARP probe sent from MAC address `VMware_c4:08:2c` checking if `192.168.204.129` is already in use.
+
+**Why I Did It:**
+Analyzing individual packets in Wireshark gives a clear look at how background operating system traffic, domain broadcasts, and local address queries (ARP/LLMNR) operate alongside network scanning activity. Understanding normal baseline traffic makes it much easier to spot anomalous or malicious probes on the wire.
+
