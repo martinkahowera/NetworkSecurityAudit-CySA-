@@ -190,8 +190,6 @@ Analyzing individual packets in Wireshark gives a clear look at how background o
 ![image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20051913.png?raw=true)
 ### Task 2.4b: Wireshark Filtering for TCP FIN Flag
 
-![Wireshark TCP FIN Flag Filter](screenshots/wireshark-tcp-fin.png)
-
 **What I Did:**
 I applied a display filter in Wireshark on `SRV01` to check if any packets originating from `Kali02` (`172.31.20.30`) had the TCP Finish (`FIN`) flag set.
 
