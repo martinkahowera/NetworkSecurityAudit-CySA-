@@ -144,4 +144,25 @@ I ran a ping sweep across the entire `172.31.20.0/24` subnet from `Kali02` to di
    ```bash
    sudo ip route add 172.31.20.0/24 dev eth0
 
+2. Verified the scan results, which identified SRV01 at 172.31.20.10 with a latency of 0.0072s and mapped its VMware MAC address (00:0C:29:AF:57:7D).
+
+Why I Did It:
+Running a ping scan (-sn) lets an auditor or attacker quickly map out which IP addresses are active without doing full port scans on every single IP. This saves time and keeps the initial discovery traffic relatively low on the network segment.
+
+[image_alt](https://github.com/martinkahowera/NetworkSecurityAudit-CySA-/blob/main/Screenshot%202026-10-02%20024659.png?raw=true)
+### Task 2.2b: Full Port & Service Scan on SRV01
+
+**What I Did:**
+I ran a comprehensive full-port scan against `SRV01` (`172.31.20.10`) from `Kali02` to check all 65,535 TCP ports for active services and inspect how the target server responds to aggressive port probing.
+
+**How I Did It:**
+1. Opened the terminal on `Kali02`.
+2. Executed a full SYN stealth scan with version detection across all TCP ports:
+   ```bash
+   sudo nmap -p- -sV 172.31.20.10
+
+3. Analyzed the scan completion output, which took 1335.33 seconds (~22 minutes) and reported that all 65,535 TCP ports returned as filtered (no-response) due to host firewall filtering rules.
+
+Why I Did It:
+Scanning the entire port range (-p-) ensures no non-standard services or administrative entry points are left undetected. The result showing all ports as filtered demonstrates that Windows Defender Firewall on SRV01 is actively dropping unsolicited probe packets, preventing unauthorized reconnaissance from mapping open listening ports.
    
